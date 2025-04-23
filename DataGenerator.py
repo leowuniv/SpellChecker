@@ -64,9 +64,10 @@ class LinkedList:
             while current.next is not None:
                 current = current.next
             while i < len(data):
-                self.__size += 1
                 current.next = Node(data[i])
                 current = current.next
+                i += 1
+            self.__size += i
             return
         
         aNode = Node(data)
@@ -174,9 +175,16 @@ def getWords() -> list[str]:
     response = requests.get(word_site)
     return [word.decode('ASCII') for word in response.content.splitlines()]
 
-def getRandomWords(words) -> Generator[str]:
-    
+def getRandomWords2(words:list):
     return words[random.randint(0, len(words)-1)]
+
+def getRandomWords(words:list) -> Generator[str]:
+    """ Use a linked list with a generator to prevent repeats"""
+    linkedWords = LinkedList()
+    linkedWords.append(words)
+    linkedWords.shuffle()
+    while linkedWords.head:
+        yield linkedWords.remove(0)
 
 def generateDictionary(self, path, size):
     with open(path, 'w') as file:
@@ -194,3 +202,6 @@ if __name__ == "__main__":
     testList2.shuffle()
     print(f"Test List 1:\n{testList1}")
     print(f"Test List 2:\n{testList2}")
+
+    for word in getRandomWords(WORDS[:25]):
+        print(word)
