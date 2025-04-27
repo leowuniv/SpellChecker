@@ -39,9 +39,17 @@ class AVLTree:
     return newRoot
 
   def leftRotate
+    newRoot = current.right
+    t2 = newRoot.left
+    current.right = t2
+    newRoot.left = current
+    
+    #if current == self.root:
+    #self.root = newRoot
 
-      if current == self.root:
-      self.root = newRoot
+    current.height = self.calculateHeight(current)
+    current.height = self.calculateHeight(newRoot)
+    return newRoot
 
   def leftRightRotate(self, current):
     current.left = self.leftRotate(current.left)
