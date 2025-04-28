@@ -11,6 +11,17 @@ class AVLTree:
   # Constructor
   def __init__(self):
     self.root = None
+
+  def traverse(self):
+    """generator preorder traverse from head"""
+    yield from self._traverse(self.root)
+
+  def _traverse(self, current):
+    """generator preorder traverse from current node"""
+    if current:
+      yield current
+      yield from self._traverse(current.left)
+      yield from self._traverse(current.right)
   
   def getHeight(self, node):
     if not node:
@@ -38,7 +49,7 @@ class AVLTree:
     newRoot.height = self.calculateHeight(newRoot)
     return newRoot
 
-  def leftRotate
+  def leftRotate(self, current):
     newRoot = current.right
     t2 = newRoot.left
     current.right = t2
@@ -60,13 +71,48 @@ class AVLTree:
     return self.leftRotate(current)
 
   # Insert
-  def insert:
-    pass
+  def insert(self, data) -> None:
+    if self.root is None:
+        self.root = Node(data)
+        return
+    self._insert(self.root, data)
+
+    balance = self.getBalance(self.root)
+    # if skewed left
+    if balance > 1:
+      # check for double rotation
+      current = self.root.left
+      if not current:
+        return
+      if self.getHeight(current.left) < self.getHeight(current.right):
+        self.leftRightRotate(self.root)
+        return
+      self.rightRotate(self.root)
+    # if skewed left
+    if balance < -1:
+      # check for double rotation
+      current = self.root.right
+      if not current:
+        return
+      if self.getHeight(current.right) < self.getHeight(current.left):
+        self.rightLeftRotate(self.root)
+        return
+      self.leftRotate(self.root)
+
+  def _insert(self, current, data):
+    if current is None:
+      return Node(data)
+    # if not base case, navigate to correct subtree
+    elif data <= current.data:
+      current.left = self._insert(current.left, data)
+    elif data > current.data:
+      current.right = self._insert(current.right, data)
+    return current
 
   # Search
-  def search:
+  def search(self):
     pass
 
   # Delete
-  def delete:
+  def delete(self):
     pass
