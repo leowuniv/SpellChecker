@@ -69,14 +69,8 @@ class AVLTree:
   def rightLeftRotate(self, current):
     current.right = self.rightRotate(current.right)
     return self.leftRotate(current)
-
-  # Insert
-  def insert(self, data) -> None:
-    if self.root is None:
-        self.root = Node(data)
-        return
-    self._insert(self.root, data)
-
+  
+  def balanceTree(self):
     balance = self.getBalance(self.root)
     # if skewed left
     if balance > 1:
@@ -99,6 +93,14 @@ class AVLTree:
         return
       self.leftRotate(self.root)
 
+  # Insert
+  def insert(self, data) -> None:
+    if self.root is None:
+        self.root = Node(data)
+        return
+    self._insert(self.root, data)
+    self.balanceTree()
+
   def _insert(self, current, data):
     if current is None:
       return Node(data)
@@ -114,5 +116,33 @@ class AVLTree:
     pass
 
   # Delete
-  def delete(self):
-    pass
+  def delete(self, data):
+    self._delete(self.root, data)
+    self.balanceTree()
+    return 
+
+  def _delete(self, current, data):
+    if current is None:
+      return
+    
+    elif data < current.data:
+      current.left = self._delete(current.left, data)
+    elif data > current.data:
+      current.right = self._delete(current.right, data)
+
+    else:
+      # when 0 children or
+      # only right child
+      if current.left is None:
+        return current.right
+      # only left child
+      if current.right is None:
+        return current.left
+      
+      # both children, inorder successor
+      temp = current.right
+      while temp.left is not None:
+        temp = temp.left
+      current.data = temp.data
+      # delete old inorder successor
+      current.right = self._delete(current.right, temp.data)
