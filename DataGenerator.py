@@ -20,11 +20,11 @@ def getRandomWords(words:list) -> Generator[str]:
     for word in temp:
         yield word
 
-def generateDictionary(self, path, size):
+def generateDictionary(path, size):
+    WORDS = getWords()
+    dictList = [next(getRandomWords(WORDS))+'\n' for _ in range(size)]
     with open(path, 'w') as file:
-        file.writelines('a')
-
-    pass
+        file.writelines(dictList)
 
 
 if __name__ == "__main__":
@@ -37,3 +37,6 @@ if __name__ == "__main__":
         if i >= 20:
             break
     print(f"Test List 1:\n{testList1}")
+
+    dictPath = './dictionary.txt'
+    generateDictionary(dictPath, 20)
