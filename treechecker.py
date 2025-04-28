@@ -112,8 +112,13 @@ class AVLTree:
     return current
 
   # Search
-  def search(self):
-    pass
+  def search(self, data):
+    return self._search(self.root, data)
+  
+  def _search(self, current, data):
+    for node in self._traverse(current):
+      if node.data == data:
+        return node
 
   # Delete
   def delete(self, data):
