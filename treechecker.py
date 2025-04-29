@@ -151,3 +151,9 @@ class AVLTree:
       current.data = temp.data
       # delete old inorder successor
       current.right = self._delete(current.right, temp.data)
+
+# Read Dictionary File
+
+# Read a document (spell checking)
+
+# Displaying misspelled words and tree
