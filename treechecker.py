@@ -153,7 +153,16 @@ class AVLTree:
       current.right = self._delete(current.right, temp.data)
 
 # Read Dictionary File
+'''
+15 unique words
+'''
 
 # Read a document (spell checking)
+'''
+Split individual words; all lowercase
+'''
 
 # Displaying misspelled words and tree
+'''
+Print tree with inorder traversal
+'''
