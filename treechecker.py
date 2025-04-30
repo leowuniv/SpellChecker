@@ -173,7 +173,7 @@ def getWordsFromText(path) -> list[str]:
   tokens = []
   for line in lines:
     for token in re.finditer(tokenizeRegex, line):
-      tokens.append(token[0])
+      tokens.append(token[0].lower())
 
   return tokens
 
