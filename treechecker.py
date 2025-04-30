@@ -156,6 +156,13 @@ class AVLTree:
 '''
 15 unique words
 '''
+def loadDictionary(filepath):
+    tree = AVLTree()
+    with open(filepath, 'r') as file:
+        for line in file:
+            word = line.strip().lower()
+            tree.insert(word)
+    return tree
 
 # Read a document (spell checking)
 '''
