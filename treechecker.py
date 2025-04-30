@@ -170,3 +170,7 @@ Split individual words; all lowercase
 '''
 Print tree with inorder traversal
 '''
+
+if __name__ == "__main__":
+  dictPath = './dictionary.txt'
+  dictWords = getDictionaryWords(dictPath)
