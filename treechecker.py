@@ -156,6 +156,10 @@ class AVLTree:
 '''
 15 unique words
 '''
+def getDictionaryWords(path) -> list[str]:
+  with open(path, 'r') as file:
+    words = [word.rstrip() for word in file.readlines()]
+  return words
 
 # Read a document (spell checking)
 '''
