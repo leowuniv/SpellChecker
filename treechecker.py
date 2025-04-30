@@ -1,4 +1,5 @@
 # AVL Tree
+import re
 
 class Node:
   def __init__(self, data):
@@ -165,6 +166,16 @@ def getDictionaryWords(path) -> list[str]:
 '''
 Split individual words; all lowercase
 '''
+def getWordsFromText(path) -> list[str]:
+  tokenizeRegex = r'(\w+)' # does not account for apostraphes in compound or possessive words
+  with open(path, 'r') as file:
+    lines = file.readlines()
+  tokens = []
+  for line in lines:
+    for token in re.finditer(tokenizeRegex, line):
+      tokens.append(token[0])
+
+  return tokens
 
 # Displaying misspelled words and tree
 '''
@@ -173,4 +184,7 @@ Print tree with inorder traversal
 
 if __name__ == "__main__":
   dictPath = './dictionary.txt'
-  dictWords = getDictionaryWords(dictPath)
+  otherPath = './sentences.txt'
+  dictWords:list = getDictionaryWords(dictPath)
+  tokens = getWordsFromText(otherPath)
+  print(tokens)
