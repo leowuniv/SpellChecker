@@ -152,6 +152,14 @@ class AVLTree:
       # delete old inorder successor
       current.right = self._delete(current.right, temp.data)
 
+  # print the dictionary in-order traversal with balances; alphabet ascending order a-z
+  def inorderTrav(self, node):
+    if node:
+      self.inorderTrav(node.left) # travel left if possible
+      balance = self.getBalance(node)
+      print(f"{node.data} (balance: {balance})")
+      self.inorderTrav(node.right) # travel right if possible
+
 import re
 
 # Read Dictionary File
@@ -208,17 +216,9 @@ if __name__ == "__main__":
   for token in tokens:
     if tree.search(token) is None:
         misspelled.add(token) # add misspelled word to set (not in dictionary); will only appear once
-  print("\nMisspelled Words:\n")
+  print("\nMisspelled Words:\n") 
   print(misspelled) # show all final misspelled words
-  
-  # print the dictionary in-order traversal; alphabet ascending order a-z
-  def inorderTraversal(node):
-    if node is None:
-        return
-    inorderTraversal(node.left)
-    print(node.data, end=' ')
-    inorderTraversal(node.right)
 
   print("\nInorder Traversal Tree:\n")
-  inorderTraversal(tree.root)
+  tree.inorderTrav(tree.root)
   #print()
