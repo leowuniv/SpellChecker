@@ -236,8 +236,6 @@ if __name__ == "__main__":
   dictPath = './dictionary.txt'
   sentPath = './sentences.txt'
   WORDS = getWords()
-  generateDictionaryFile(WORDS, dictPath, 20)
-  generateSentenceFile(WORDS, sentPath, 20, 12, 25)
 
   generateDictionaryFile(WORDS, dictPath, 20) # at least 15 unique words
   generateSentenceFile(WORDS, sentPath, 20, 12, 25) # 20 wrds, 12 min per sen, 25 max
