@@ -219,7 +219,7 @@ def getDictionaryWords(path) -> list[str]:
 Split individual words; all lowercase
 '''
 def getWordsFromText(path) -> list[str]:
-  tokenizeRegex = r'(\w+)' # does not account for apostraphes in compound or possessive words
+  tokenizeRegex = r'(\w+\'?\w+)' # does not account for apostraphes in compound or possessive words
   with open(path, 'r') as file:
     lines = file.readlines()
   tokens = []
