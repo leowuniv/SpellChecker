@@ -1,6 +1,5 @@
 import requests
 import random
-import os
 
 def getWords() -> list[str]:
     # got from stack overflow https://stackoverflow.com/questions/18834636/random-word-generator-python
@@ -39,21 +38,6 @@ def generateSentenceFile(WORDS:list[str], path:str, size:int, minWords:int, maxW
     with open(path, 'w') as file:
         file.writelines(sentList)
 
-if __name__ == "__main__":
-    testList1 = []
-    WORDS = getWords()
-    i = 0
-    for word in getRandomWords(WORDS):
-        testList1.append(word)
-        i += 1
-        if i >= 20:
-            break
-    #print(f"Test List 1:\n{testList1}")
-
-    dictPath = './dictionary.txt'
-    sentPath = './sentences.txt'
-    generateDictionaryFile(WORDS, dictPath, 20)
-    generateSentenceFile(WORDS, sentPath, 20, 12, 25)
 
 # AVL Tree
 
@@ -248,13 +232,15 @@ def getWordsFromText(path) -> list[str]:
 # https://docs.python.org/2/library/sets.html
 if __name__ == "__main__":
   dictPath = './dictionary.txt'
-  otherPath = './sentences.txt'
-
+  sentPath = './sentences.txt'
   WORDS = getWords()
+  generateDictionaryFile(WORDS, dictPath, 20)
+  generateSentenceFile(WORDS, sentPath, 20, 12, 25)
+
   generateDictionaryFile(WORDS, dictPath, 20) # at least 15 unique words
   generateSentenceFile(WORDS, sentPath, 20, 12, 25) # 20 wrds, 12 min per sen, 25 max
   dictWords:list = getDictionaryWords(dictPath)
-  tokens = getWordsFromText(otherPath)
+  tokens = getWordsFromText(sentPath)
 
   print("\nWords in Dictionary:\n")
   print(dictWords) # print words in dictionary
