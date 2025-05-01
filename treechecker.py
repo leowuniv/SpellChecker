@@ -200,17 +200,17 @@ if __name__ == "__main__":
   for word in dictWords: #add dictionary words in tree
     tree.insert(word)
 
+  # Displaying misspelled words and tree
+  '''
+  Print tree with inorder traversal
+  '''
   misspelled = set()
   for token in tokens:
     if tree.search(token) is None:
         misspelled.add(token) # add misspelled word to set (not in dictionary); will only appear once
   print("\nMisspelled Words:\n")
-  print(misspelled)
-
-  # Displaying misspelled words and tree
-  '''
-  Print tree with inorder traversal
-  '''
+  print(misspelled) # show all final misspelled words
+  
   # print the dictionary in-order traversal; alphabet ascending order a-z
   def inorderTraversal(node):
     if node is None:
