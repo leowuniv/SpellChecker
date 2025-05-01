@@ -87,6 +87,9 @@ class AVLTree:
     current.left = t2
     newRoot.right = current
 
+    if current == self.root:
+        self.root = newRoot
+
     current.height = self.calculateHeight(current)
     newRoot.height = self.calculateHeight(newRoot)
     return newRoot
@@ -97,8 +100,8 @@ class AVLTree:
     current.right = t2
     newRoot.left = current
     
-    #if current == self.root:
-    #self.root = newRoot
+    if current == self.root:
+        self.root = newRoot
 
     current.height = self.calculateHeight(current)
     current.height = self.calculateHeight(newRoot)
