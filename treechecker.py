@@ -1,5 +1,6 @@
 import requests
 import random
+import re
 
 def getWords() -> list[str]:
     # got from stack overflow https://stackoverflow.com/questions/18834636/random-word-generator-python
@@ -200,8 +201,6 @@ class AVLTree:
       balance = self.getBalance(node)
       print(f"{node.data} (balance: {balance})")
       self.inorderTrav(node.right) # travel right if possible
-
-import re
 
 # Read Dictionary File
 '''
