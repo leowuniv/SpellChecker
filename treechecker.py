@@ -29,6 +29,8 @@ def getRandomSentence(WORDS:list[str], minWords:int, maxWords:int):
 
 def generateDictionaryFile(WORDS:list[str], path:str, size:int):
     dictList = [next(getRandomWords(WORDS))+'\n' for _ in range(size)]
+    # sanity check
+    dictList.append("hey\n")
     with open(path, 'w') as file:
         file.writelines(dictList)
 
